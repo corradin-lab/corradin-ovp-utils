@@ -5,7 +5,7 @@ description = ""
 authors = ["An <hoangthienan95@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8, <3.9"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
@@ -13,6 +13,9 @@ jupyterlab = "^3.0.7"
 nbdev = "^1.1.12"
 plotly = "^4.14.3"
 pandas = "^1.2.1"
+kedro = "^0.17.0"
+pydantic = "^1.7.3"
+tqdm = "^4.58.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

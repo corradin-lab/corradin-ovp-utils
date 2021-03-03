@@ -1,0 +1,49 @@
+_MS_gen_file: &MS_gen_file
+    type: nbdev_tutorial.datasets.genetic_datasets.GenFileDataset
+    file_type: CC
+    file_format: GenFile
+    load_args:
+        prob_n_cols: 3
+        initial_cols:
+            - "dashes"
+            - "rsid"
+            - "position"
+            - "ref"
+            - "alt"
+        rsid_col: "rsid"
+        ref_col: "ref"
+        alt_col: "alt"
+        pandas_args:
+            sep: " "
+            header: null
+            
+        
+
+genetic_file:
+    <<: *MS_gen_file
+    file_path:
+        case:
+            folder: "data/test_data/gen_file"
+            full_file_name: "test_CASE_MS_chr22.gen"
+        control:
+            folder: "data/test_data/gen_file"
+            full_file_name: "test_CONTROL_MS_chr22.gen"
+
+            
+genetic_file_common_folder:
+    <<: *MS_gen_file
+    file_type: CC
+    common_folder: "data/test_data/gen_file"
+    file_path:
+        case:
+            full_file_name: "test_CASE_MS_chr22.gen"
+        control:
+            full_file_name: "test_CONTROL_MS_chr22.gen"
+
+
+genetic_file_single:
+    <<: *MS_gen_file
+    file_type: S
+    file_path:
+        folder: "data/test_data/gen_file"
+        full_file_name: "test_CASE_MS_chr22.gen"
