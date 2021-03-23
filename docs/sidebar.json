@@ -1,6 +1,13 @@
 {
   "corradin_ovp_utils": {
     "Overview": "/",
-    "module name here": "catalog.html"
+    "module name here": "core.html",
+    "Genetic file formats": "datasets_genetic_dataset.html",
+    "OVP dataset": "datasets_OVPDataset.html",
+    "Sample file formats": "datasets_sample_file.html",
+    "Calculating Odds Ratio": "odds_ratio.html",
+    "Combining Genotype and Phenotype files": "datasets_CombinedGenoPheno.html",
+    "Utilities": "utils.html",
+    "Data Catalog": "catalog.html"
   }
 }

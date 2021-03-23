@@ -11,6 +11,27 @@ entries:
       url: /
     - output: web,pdf
       title: module name here
+      url: core.html
+    - output: web,pdf
+      title: Genetic file formats
+      url: datasets_genetic_dataset.html
+    - output: web,pdf
+      title: OVP dataset
+      url: datasets_OVPDataset.html
+    - output: web,pdf
+      title: Sample file formats
+      url: datasets_sample_file.html
+    - output: web,pdf
+      title: Calculating Odds Ratio
+      url: odds_ratio.html
+    - output: web,pdf
+      title: Combining Genotype and Phenotype files
+      url: datasets_CombinedGenoPheno.html
+    - output: web,pdf
+      title: Utilities
+      url: utils.html
+    - output: web,pdf
+      title: Data Catalog
       url: catalog.html
     output: web
     title: corradin_ovp_utils

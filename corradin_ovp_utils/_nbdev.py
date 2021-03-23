@@ -24,10 +24,11 @@ modules = ["datasets/genetic_file.py",
            "datasets/sample_file.py",
            "odds_ratio.py",
            "datasets/CombinedGenoPheno.py",
+           "datasets/utils.py",
            "catalog.py"]
 
-doc_url = "https://hoangthienan95.github.io/corradin_ovp_utils/"
+doc_url = "https://corradin-lab.github.io #https://pages.github.corradin-lab.com./corradin_ovp_utils/"
 
-git_url = "https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/"
+git_url = "https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/"
 
 def custom_doc_links(name): return None
