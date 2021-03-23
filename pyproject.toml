@@ -1,11 +1,12 @@
 [tool.poetry]
-name = "nbdev_tutorial_2nd_try"
+name = "corradin_ovp_utils"
 version = "0.1.0"
 description = ""
 authors = ["An <hoangthienan95@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.8, <3.9"
+portray = "^1.5.2"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"

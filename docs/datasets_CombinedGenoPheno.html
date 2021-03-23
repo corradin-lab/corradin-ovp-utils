@@ -39,7 +39,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/nbdev_tutorial_2nd_try/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
   and should_run_async(code)
 </pre>
 </div>
@@ -54,62 +54,30 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">CombinedGenoPheno</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">genetic_file_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
-    <span class="n">sample_file_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
-        
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">init_from_OVPDataset</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
-                             <span class="n">genetic_dataset</span><span class="p">:</span> <span class="n">OVPDataset</span><span class="o">.</span><span class="n">OVPDataset</span><span class="p">,</span>
-                             <span class="n">sample_dataset</span><span class="p">:</span> <span class="n">OVPDataset</span><span class="o">.</span><span class="n">OVPDataset</span><span class="p">,</span>
-                            <span class="n">rsid_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-                             <span class="n">chrom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                            <span class="p">):</span>
-        
-        <span class="n">genetic_dict</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">process_datasets</span><span class="p">(</span><span class="n">genetic_dataset</span><span class="p">,</span> <span class="n">sample_dataset</span><span class="p">)</span>
-        <span class="n">all_samples_geno_df</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">get_geno_each_sample</span><span class="p">(</span><span class="n">chrom</span><span class="o">=</span><span class="n">chrom</span><span class="p">,</span> <span class="n">rsid_list</span><span class="o">=</span> <span class="n">rsid_list</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">genetic_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">all_samples_geno_df</span><span class="p">)</span>
-            
-        
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">process_datasets</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">genetic_dataset</span><span class="p">:</span> <span class="n">OVPDataset</span><span class="o">.</span><span class="n">OVPDataset</span><span class="p">,</span> <span class="n">sample_dataset</span><span class="p">:</span> <span class="n">OVPDataset</span><span class="o">.</span><span class="n">OVPDataset</span><span class="p">,</span> <span class="p">):</span>
-        <span class="n">combine_genetic_sample_func</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_process_file_type</span><span class="p">(</span><span class="n">genetic_dataset</span><span class="o">.</span><span class="n">_file_path</span><span class="p">,</span> <span class="n">sample_dataset</span><span class="o">.</span><span class="n">_file_path</span><span class="p">)</span>
-        <span class="n">genetic_dict</span> <span class="o">=</span> <span class="n">combine_genetic_sample_func</span><span class="p">(</span><span class="n">genetic_dataset</span><span class="p">,</span> <span class="n">sample_dataset</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">genetic_dict</span>
-    
-    <span class="nd">@typedispatch</span>    
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_process_file_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">genetic_file_schema</span><span class="p">:</span><span class="n">OVPDataset</span><span class="o">.</span><span class="n">SingleFilePathSchema</span><span class="p">,</span> <span class="n">sample_file_schema</span><span class="p">:</span> <span class="n">OVPDataset</span><span class="o">.</span><span class="n">SingleFilePathSchema</span><span class="p">):</span>
-        <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span>
-    
-    <span class="nd">@typedispatch</span>
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_process_file_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">genetic_file_schema</span><span class="p">:</span><span class="n">OVPDataset</span><span class="o">.</span><span class="n">MultipleFilePathSchema</span><span class="p">,</span> <span class="n">sample_file_schema</span><span class="p">:</span> <span class="n">OVPDataset</span><span class="o">.</span><span class="n">MultipleFilePathSchema</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">genetic_file_schema</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">sample_file_schema</span><span class="o">.</span><span class="vm">__class__</span>
-        <span class="k">def</span> <span class="nf">combine_genetic_sample_multiple</span><span class="p">(</span><span class="n">genetic_dataset</span><span class="p">,</span> <span class="n">sample_file_dataset</span><span class="p">):</span>
-            <span class="n">genetic_dict</span> <span class="o">=</span> <span class="n">genetic_dataset</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="vm">__dict__</span>
-            <span class="n">sample_dict</span> <span class="o">=</span> <span class="n">sample_file_dataset</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="vm">__dict__</span>
-            <span class="n">shared_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">genetic_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">sample_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-            
-            <span class="c1">#make sure the two datasets only have shared keys</span>
-            <span class="k">assert</span> <span class="n">shared_keys</span> <span class="o">==</span> <span class="n">genetic_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">==</span> <span class="n">sample_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">shared_keys</span><span class="p">:</span>
-                <span class="n">genetic_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">sample_ids</span> <span class="o">=</span> <span class="n">sample_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
-            <span class="k">return</span> <span class="n">genetic_dict</span>
-        
-        <span class="k">return</span> <span class="n">combine_genetic_sample_multiple</span>
-                
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
-        <span class="n">arbitrary_types_allowed</span> <span class="o">=</span> <span class="kc">True</span>
-</pre></div>
+<div class="output_wrapper">
+<div class="output">
 
-    </div>
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="CombinedGenoPheno" class="doc_header"><code>class</code> <code>CombinedGenoPheno</code><a href="https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/CombinedGenoPheno.py#L15" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CombinedGenoPheno</code>(<strong><code>genetic_file_df</code></strong>:<code>DataFrame</code>, <strong><code>sample_file_df</code></strong>:<code>DataFrame</code>) :: <code>BaseModel</code></p>
+</blockquote>
+
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}

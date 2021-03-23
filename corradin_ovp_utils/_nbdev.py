@@ -14,6 +14,7 @@ index = {"row_vectorize": "01_datasets_genetic_dataset.ipynb",
          "SampleFileFormat": "03_datasets_sample_file.ipynb",
          "RsidComboInfo": "04_odds_ratio.ipynb",
          "get_geno_combination_df": "04_odds_ratio.ipynb",
+         "CombinedGenoPheno": "05_datasets_CombinedGenoPheno.ipynb",
          "conf_loader": "catalog.ipynb",
          "conf_test_data_catalog": "catalog.ipynb",
          "test_data_catalog": "catalog.ipynb"}

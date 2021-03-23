@@ -1344,7 +1344,7 @@ nb_path: "04_odds_ratio.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">test_geno_combination_df</span><span class="o">.</span><span class="n">num_samples_NA</span> <span class="o">==</span> <span class="n">num_samples_NA</span><span class="p">[</span><span class="s2">&quot;unique_samples_count&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">9</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">test_geno_combination_df</span><span class="o">.</span><span class="n">num_samples_NA</span> <span class="o">==</span> <span class="n">NA_samples_df</span><span class="p">[</span><span class="s2">&quot;unique_samples_count&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">9</span>
 <span class="k">assert</span> <span class="n">test_geno_combination_df</span><span class="o">.</span><span class="n">total_samples_with_NA</span> <span class="o">==</span> <span class="mi">9772</span>
 <span class="k">assert</span> <span class="n">test_geno_combination_df</span><span class="o">.</span><span class="n">total_samples_no_NA</span> <span class="o">==</span> <span class="mi">9763</span>
 </pre></div>
