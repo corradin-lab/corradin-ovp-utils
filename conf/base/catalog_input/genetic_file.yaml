@@ -1,7 +1,6 @@
 _MS_gen_file: &MS_gen_file
-    type: nbdev_tutorial.datasets.genetic_datasets.GenFileDataset
-    file_type: CC
-    file_format: GenFile
+    type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+    file_format: genetic_file.GenFileFormat
     load_args:
         prob_n_cols: 3
         initial_cols:
@@ -21,6 +20,7 @@ _MS_gen_file: &MS_gen_file
 
 genetic_file:
     <<: *MS_gen_file
+    file_type: OVPDataset.CaseControlFilePathSchema
     file_path:
         case:
             folder: "data/test_data/gen_file"
@@ -32,9 +32,9 @@ genetic_file:
             
 genetic_file_common_folder:
     <<: *MS_gen_file
-    file_type: CC
-    common_folder: "data/test_data/gen_file"
+    file_type: OVPDataset.CaseControlFilePathSchema
     file_path:
+        common_folder: "data/test_data/gen_file"
         case:
             full_file_name: "test_CASE_MS_chr22.gen"
         control:
@@ -43,7 +43,20 @@ genetic_file_common_folder:
 
 genetic_file_single:
     <<: *MS_gen_file
-    file_type: S
+    file_type: OVPDataset.SingleFilePathSchema
     file_path:
         folder: "data/test_data/gen_file"
         full_file_name: "test_CASE_MS_chr22.gen"
+
+
+genetic_file_split_by_chrom:
+    <<: *MS_gen_file
+    file_type: OVPDataset.CaseControlFilePathSchema
+    file_path:
+        common_folder: "data/test_data/gen_file"
+        case:
+            split_by_chromosome: True
+            full_file_name: "test_CASE_MS_chr{chrom_num}.gen"
+        control:
+            split_by_chromosome: True
+            full_file_name: "test_CONTROL_MS_chr{chrom_num}.gen"

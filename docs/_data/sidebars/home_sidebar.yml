@@ -11,8 +11,8 @@ entries:
       url: /
     - output: web,pdf
       title: module name here
-      url: extract_genetic_data.html
+      url: catalog.html
     output: web
-    title: nbdev_tutorial
+    title: corradin_ovp_utils
   output: web
   title: Sidebar
