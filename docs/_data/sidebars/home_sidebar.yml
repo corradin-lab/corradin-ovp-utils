@@ -14,7 +14,7 @@ entries:
       url: core.html
     - output: web,pdf
       title: Genetic file formats
-      url: datasets_genetic_dataset.html
+      url: datasets_genetic_file.html
     - output: web,pdf
       title: OVP dataset
       url: datasets_OVPDataset.html
@@ -31,8 +31,14 @@ entries:
       title: Utilities
       url: utils.html
     - output: web,pdf
+      title: Title
+      url: test_data_generation.html
+    - output: web,pdf
       title: Data Catalog
       url: catalog.html
+    - output: web,pdf
+      title: Schemas
+      url: datasets_schemas.html
     output: web
     title: corradin_ovp_utils
   output: web

@@ -1,0 +1,3 @@
+name: MS_test
+genetic: test_MS_genetic_file_split_by_chrom
+sample: test_MS_sample_file

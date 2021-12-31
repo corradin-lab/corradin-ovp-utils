@@ -3,11 +3,13 @@
 __all__ = ['SampleFileFormat']
 
 # Cell
+from .schemas import SingleFilePathSchema
 from typing import Any, Dict, List, Optional, Literal, Union
 from pydantic import BaseModel
 from pathlib import Path, PosixPath
 from fastcore.meta import delegates
 import pandas as pd
+import numpy as np
 from copy import deepcopy
 
 # from enum import Enum
@@ -32,17 +34,52 @@ from copy import deepcopy
 # Cell
 
 class SampleFileFormat(BaseModel):
-    filepath: Union[str, Path]
+    file_path: SingleFilePathSchema
     pandas_args: Dict[str, Any]
     sample_id_col: str
     cov_cols: List[str]
+    pheno_col_name: Optional[str]
+    pheno_col_file_info: Optional[str]
+    ignore_neg_id_samples: Optional[bool]
     missing_col: Optional[str]
 
 
     @delegates(pd.read_csv)
-    def load(self, **kwargs):
-        df = pd.read_csv(filepath_or_buffer = self.filepath, **self.load_args, **kwargs)
-        return df
+    def load(self, with_missing_samples=True, subset: Literal["case","control"]=None,  **kwargs):
+        df = pd.read_csv(filepath_or_buffer = self.file_path.get_full_file_path(), **self.load_args, **kwargs)
+        df.index.name = "sample_id"
+        if self.pheno_col_file_info:
+            assert len(self.pheno_col_file_info.split("|")) == 3
+            file_path, index_col_name, pheno_col_name = self.pheno_col_file_info.split("|")
+            pheno_col_df = pd.read_csv(file_path, sep="\t", index_col=index_col_name)
+            df = df.join(pheno_col_df, how = "outer")
+            self.pheno_col_name = pheno_col_name
+
+        if self.ignore_neg_id_samples:
+            missing_cond = (df[self.pheno_col_name].isna()) | (df.index.astype(int) < 0)
+        else:
+            missing_cond = df[self.pheno_col_name].isna()
+        df["missing_col_generated"] = np.where(missing_cond, 1, 0)
+
+        if self.missing_col:
+            assert (df["missing_col_generated"]).equals(df[self.missing_col])
+        else:
+            df.missing_col = "missing_col_generated"
+
+        if with_missing_samples:
+            return_df = df
+        else:
+            return_df = df.query("missing_col_generated == 0")
+
+        if subset:
+            assert list(sorted(df.query("missing_col_generated == 0")[pheno_col_name].unique())) == [0,1]
+        if subset == "case":
+            return_df = return_df.query(f"{self.pheno_col_name} == 1")
+        if subset == "control":
+            return_df = return_df.query(f"{self.pheno_col_name} == 0")
+
+        return return_df
+
 
     @property
     def load_args(self):

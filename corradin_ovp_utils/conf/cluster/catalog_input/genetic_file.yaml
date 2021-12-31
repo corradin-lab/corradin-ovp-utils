@@ -1,0 +1,41 @@
+# _MS_gen_file: &MS_gen_file
+#     type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+#     file_format: genetic_file.Gen.GenFileFormat
+#     load_args:
+#         prob_n_cols: 3
+#         initial_cols:
+#             - "dashes"
+#             - "rsid"
+#             - "position"
+#             - "ref"
+#             - "alt"
+#         rsid_col: "rsid"
+#         ref_col: "ref"
+#         alt_col: "alt"
+#         pandas_args:
+#             sep: " "
+#             header: null
+            
+
+# MS_genetic_file_split_by_chrom:
+#     <<: *MS_gen_file
+#     file_type: OVPDataset.CaseControlFilePathSchema
+#     file_path:
+#         common_folder: "/lab/corradin_dbgap/WTCCC2_all_controls_MS_UC/IMPUTE2_ALL/"
+#         case:
+#             split_by_chromosome: True
+#             full_file_name: "ALL_MS_impute2_chr{chrom_num}.gen"
+#         control:
+#             split_by_chromosome: True
+#             full_file_name: "ALL_controls_58C_NBS_WTC2_impute2_chr{chrom_num}.gen"
+
+# genetic_file_bgen:
+#     type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+#     file_format: genetic_file.Bgen.BgenFileFormat
+#     file_type: OVPDataset.SingleFilePathSchema
+#     file_path:
+#         folder: "/lab/corradin_biobank/Raw_UKB_downloads/BGEN/"
+#         split_by_chromosome: True
+#         full_file_name: "ukb_imp_chr{chrom_num}_v3.bgen"
+#     load_args:
+#         sample_file: "/lab/corradin_biobank/Raw_UKB_downloads/sample_files/ukb45624_imp_chr21_v3_s487275.sample"

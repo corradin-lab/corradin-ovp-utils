@@ -1,12 +1,31 @@
 [tool.poetry]
 name = "corradin_ovp_utils"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["An <hoangthienan95@gmail.com>"]
+
+[tool.poetry.scripts]
+run_ovp_pipeline = "corradin_ovp_utils.cli:run_ovp_pipeline_static"
+run_ovp_pipeline_dynamic = "corradin_ovp_utils.cli:run_ovp_pipeline_dynamic"
 
 [tool.poetry.dependencies]
 python = ">=3.8, <3.9"
 portray = "^1.5.2"
+bgen-reader = "^4.0.7"
+ipython = "7.10"
+jedi = "<0.18.0"
+vaex = "^4.1.0"
+boltons = "^21.0.0"
+hydra-core = "^1.1.0"
+prefect = {extras = ["viz"], version = "^0.15.1"}
+dask = "^2021.8.1"
+bokeh = "^2.3.3"
+dask-jobqueue = "^0.7.3"
+dask-labextension = "^5.1.0"
+combinatorial-gwas = "^0.2.1"
+erdantic = "^0.2.1"
+setuptools = "^59.6.0"
+rich = "^10.16.0"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
@@ -19,6 +38,9 @@ pydantic = "^1.7.3"
 tqdm = "^4.58.0"
 portray = "^1.5.2"
 twine = "^3.3.0"
+viztracer = "^0.13.4"
+jupytext = "^1.11.4"
+streamlit = "^1.2.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

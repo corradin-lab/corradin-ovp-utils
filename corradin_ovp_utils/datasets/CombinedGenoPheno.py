@@ -7,53 +7,90 @@ from typing import Any, Dict, List, Optional, Literal, Union
 from pydantic import BaseModel
 import pandas as pd
 import corradin_ovp_utils
-from fastcore.basics import typed
+from fastcore.basics import typed, basic_repr
 from fastcore.dispatch import typedispatch
 from . import OVPDataset
+from .genetic_file import GeneticFileFormat
+from .schemas import SingleFilePathSchema, MultipleFilePathSchema
+import copy
 
 # Cell
 class CombinedGenoPheno(BaseModel):
-    genetic_file_df: pd.DataFrame
-    sample_file_df: pd.DataFrame
+    #genetic_file_df: pd.DataFrame
+    #sample_file_df: pd.DataFrame
+    all_samples_geno_df: pd.DataFrame
+    all_geno_df: pd.DataFrame
+    sample_dict: Dict[str, pd.DataFrame]
+    genetic_files_dict: Dict[str, GeneticFileFormat]
+
+    __repr__ = basic_repr("num_snps,num_samples")
+
+    @property
+    def num_snps(self):
+        return len(self.all_samples_geno_df.columns)
+
+    @property
+    def num_samples(self):
+        return {key: value.shape[0] for key, value in self.sample_dict.items()}
+
+    def get_geno_each_sample_subset(self, key):
+        subset_df = self.all_samples_geno_df.loc[self.sample_dict[key].index]
+        return subset_df
+
+    @property
+    def sample_subsets(self):
+        return list(self.sample_dict.keys())
 
     @classmethod
     def init_from_OVPDataset(cls,
                              genetic_dataset: OVPDataset.OVPDataset,
                              sample_dataset: OVPDataset.OVPDataset,
-                            rsid_list: List[str],
-                             chrom=None,
+                            rsid_dict: Dict[int,List[str]],
+                             id_col_list=["rsid"],
+                             batch_size: int =1_000,
+                             excluded_sample_ids : List[str] = []
                             ):
 
-        genetic_dict = cls.process_datasets(genetic_dataset, sample_dataset)
-        all_samples_geno_df = [file.get_geno_each_sample(chrom=chrom, rsid_list= rsid_list) for file in genetic_dict.values()]
-        return pd.concat(all_samples_geno_df)
+        genetic_files_dict, sample_dict_loaded = cls.process_datasets(genetic_dataset, sample_dataset, excluded_sample_ids = excluded_sample_ids)
+        all_samples_geno_df, all_geno_df, *extra_info = zip(*[genetic_file.get_geno_each_sample(rsid_dict, id_col_list=id_col_list, batch_size=1_000, excluded_sample_ids= excluded_sample_ids) for key, genetic_file in genetic_files_dict.items()])
+
+        return CombinedGenoPheno(all_samples_geno_df = pd.concat(all_samples_geno_df), sample_dict= sample_dict_loaded, genetic_files_dict= genetic_files_dict, all_geno_df = all_geno_df[0])
+
 
 
     @classmethod
-    def process_datasets(cls, genetic_dataset: OVPDataset.OVPDataset, sample_dataset: OVPDataset.OVPDataset, ):
+    def process_datasets(cls, genetic_dataset: OVPDataset.OVPDataset, sample_dataset: OVPDataset.OVPDataset, excluded_sample_ids:List[str]=[]):
         combine_genetic_sample_func = cls._process_file_type(genetic_dataset._file_path, sample_dataset._file_path)
-        genetic_dict = combine_genetic_sample_func(genetic_dataset, sample_dataset)
-        return genetic_dict
+        genetic_dict, sample_dict_loaded = combine_genetic_sample_func(genetic_dataset, sample_dataset, excluded_sample_ids= excluded_sample_ids)
+        return genetic_dict, sample_dict_loaded
 
-    @typedispatch
-    @classmethod
-    def _process_file_type(cls, genetic_file_schema:OVPDataset.SingleFilePathSchema, sample_file_schema: OVPDataset.SingleFilePathSchema):
-        return lambda x, y: x
 
-    @typedispatch
+#     @typedispatch
+#     @classmethod
+#     def _process_file_type(cls, genetic_file_schema: SingleFilePathSchema, sample_file_schema: SingleFilePathSchema):
+#         return lambda genetic, sample: genetic
+
+
+#     @typedispatch
     @classmethod
-    def _process_file_type(cls, genetic_file_schema:OVPDataset.MultipleFilePathSchema, sample_file_schema: OVPDataset.MultipleFilePathSchema):
+    def _process_file_type(cls, genetic_file_schema: MultipleFilePathSchema,
+                           sample_file_schema: MultipleFilePathSchema):
         assert genetic_file_schema.__class__ == sample_file_schema.__class__
-        def combine_genetic_sample_multiple(genetic_dataset, sample_file_dataset):
-            genetic_dict = genetic_dataset.files.__dict__
-            sample_dict = sample_file_dataset.files.__dict__
+        def combine_genetic_sample_multiple(genetic_dataset, sample_file_dataset, excluded_sample_ids:List[str]):
+            genetic_dict = copy.deepcopy(vars(genetic_dataset.files))
+            sample_dict = copy.deepcopy(vars(sample_file_dataset.files))
             shared_keys = set(genetic_dict.keys()) & set(sample_dict.keys())
+            sample_dict_loaded = {}
 
             #make sure the two datasets only have shared keys
-            assert shared_keys == genetic_dict.keys() == sample_dict.keys()
+            assert set(genetic_dict.keys()) == set(sample_dict.keys())
             for key in shared_keys:
-                genetic_dict[key].sample_ids = sample_dict[key].load().index
-            return genetic_dict
+                sample_file_loaded = sample_dict[key].load(with_missing_samples = True)
+                genetic_dict[key].sample_ids = list(sample_file_loaded.index)
+                genetic_dict[key].sample_file = sample_dict[key].file_path.get_full_file_path()
+                sample_dict_loaded[key] = sample_dict[key].load(with_missing_samples = False).query("index not in @excluded_sample_ids")
+
+            return genetic_dict, sample_dict_loaded
 
         return combine_genetic_sample_multiple
 

@@ -1,0 +1,30 @@
+_MS_gen_file: &MS_gen_file
+    type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+    file_format: genetic_file.Gen.GenFileFormat
+    load_args:
+        prob_n_cols: 3
+        initial_cols:
+            - "dashes"
+            - "rsid"
+            - "position"
+            - "alleleA"
+            - "alleleB"
+        rsid_col: "rsid"
+        alleleA_col: "alleleA"
+        alleleB_col: "alleleB"
+        pandas_args:
+            sep: " "
+            header: null
+
+MS_genetic_file_split_by_chrom:
+    <<: *MS_gen_file
+    file_type: OVPDataset.CaseControlFilePathSchema
+    file_path:
+        common_folder: "/lab/corradin_dbgap/WTCCC2_all_controls_MS_UC/IMPUTE2_ALL/"
+        case:
+            split_by_chromosome: True
+            full_file_name: "ALL_MS_impute2_chr{chrom_num}.gen"
+        control:
+            split_by_chromosome: True
+            full_file_name: "ALL_controls_58C_NBS_WTC2_impute2_chr{chrom_num}.gen"
+            

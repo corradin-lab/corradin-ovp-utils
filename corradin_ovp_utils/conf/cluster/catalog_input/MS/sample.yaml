@@ -1,4 +1,4 @@
-sample_file:
+MS_sample_file:
     type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
     file_type: OVPDataset.CaseControlFilePathSchema
     file_format: sample_file.SampleFileFormat
@@ -6,6 +6,7 @@ sample_file:
         sample_id_col: "ID_2"
         cov_cols: ["sex"]
         missing_col: "missing"
+        pheno_col_name: "case"
         pandas_args:
             sep: " "
             skiprows: [1] #2nd line of file is extra and should be discarded
@@ -15,3 +16,4 @@ sample_file:
             full_file_name: "MS_impute2_ALL_sample_out.tsv"
         control:
             full_file_name: "ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv"
+

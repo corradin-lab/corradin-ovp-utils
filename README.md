@@ -38,8 +38,8 @@ genetic_file, sample_file
 
 
 
-    (<corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x7fd8383aa4f0>,
-     <corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x7fd878c9fcd0>)
+    (<corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x1541f0c05400>,
+     <corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x154044d99730>)
 
 
 
@@ -52,8 +52,8 @@ genetic_file.full_file_path
 
 
 
-    {'case': PosixPath('data/test_data/gen_file/test_CASE_MS_chr22.gen'),
-     'control': PosixPath('data/test_data/gen_file/test_CONTROL_MS_chr22.gen')}
+    {'case': SingleFilePathSchema(folder='data/test_data/gen_file', full_file_name='test_CASE_MS_chr22.gen', file_name='test_CASE_MS_chr22', extension='gen', split_by_chromosome=None),
+     'control': SingleFilePathSchema(folder='data/test_data/gen_file', full_file_name='test_CONTROL_MS_chr22.gen', file_name='test_CONTROL_MS_chr22', extension='gen', split_by_chromosome=None)}
 
 
 
@@ -64,8 +64,8 @@ sample_file.full_file_path
 
 
 
-    {'case': PosixPath('data/test_data/sample_file/MS_impute2_ALL_sample_out.tsv'),
-     'control': PosixPath('data/test_data/sample_file/ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv')}
+    {'case': SingleFilePathSchema(folder='data/test_data/sample_file', full_file_name='MS_impute2_ALL_sample_out.tsv', file_name='MS_impute2_ALL_sample_out', extension='tsv', split_by_chromosome=None),
+     'control': SingleFilePathSchema(folder='data/test_data/sample_file', full_file_name='ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv', file_name='ALL_controls_58C_NBS_WTC2_impute2_sample_out', extension='tsv', split_by_chromosome=None)}
 
 
 
@@ -81,127 +81,33 @@ all_samples_geno_df = CombinedGenoPheno.init_from_OVPDataset(genetic_file, sampl
 all_samples_geno_df
 ```
 
-    /Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-      and should_run_async(code)
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    <ipython-input-6-a08151bc6752> in <module>
+    ----> 1 all_samples_geno_df = CombinedGenoPheno.init_from_OVPDataset(genetic_file, sample_file, rsid_list = ["rs77948203", "rs9610458", "rs134490", "rs5756405"])
+          2 all_samples_geno_df
 
 
+    /lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/CombinedGenoPheno.py in init_from_OVPDataset(cls, genetic_dataset, sample_dataset, rsid_list, id_col_list, batch_size, chrom)
+         29 
+         30         genetic_dict = cls.process_datasets(genetic_dataset, sample_dataset)
+    ---> 31         all_samples_geno_df = [file.get_geno_each_sample(chrom=chrom, rsid_list= rsid_list, id_col_list= id_col_list, batch_size= batch_size ) for file in genetic_dict.values()]
+         32         return pd.concat(all_samples_geno_df)
+         33 
 
 
+    /lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/CombinedGenoPheno.py in <listcomp>(.0)
+         29 
+         30         genetic_dict = cls.process_datasets(genetic_dataset, sample_dataset)
+    ---> 31         all_samples_geno_df = [file.get_geno_each_sample(chrom=chrom, rsid_list= rsid_list, id_col_list= id_col_list, batch_size= batch_size ) for file in genetic_dict.values()]
+         32         return pd.concat(all_samples_geno_df)
+         33 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>rsid</th>
-      <th>rs77948203</th>
-      <th>rs9610458</th>
-      <th>rs134490</th>
-      <th>rs5756405</th>
-    </tr>
-    <tr>
-      <th>sample_id</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>WTCCCT473540</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>NA</td>
-      <td>AG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473530</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>AA</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473555</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>NA</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473426</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>GG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473489</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>NA</td>
-      <td>AA</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>WS574632</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>GG</td>
-    </tr>
-    <tr>
-      <th>WS574661</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>AA</td>
-    </tr>
-    <tr>
-      <th>BLOOD294452</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>AG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT511021</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>AG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT510948</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>AA</td>
-    </tr>
-  </tbody>
-</table>
-<p>14947 rows × 4 columns</p>
-</div>
-
+    TypeError: get_geno_each_sample() got an unexpected keyword argument 'id_col_list'
 
 
 We can then take this output dataframe and do downstream analysis with it, using the functions in this library. For example, let's see the break down of genotypes grouped by the two SNPs `"rs77948203"` and `"rs9610458"`

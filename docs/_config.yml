@@ -1,7 +1,7 @@
-repository: hoangthienan95/nbdev_tutorial
+repository: hoangthienan95/corradin_ovp_utils
 output: web
-topnav_title: nbdev_tutorial
-site_title: nbdev_tutorial
+topnav_title: corradin_ovp_utils
+site_title: Outside Variant Utilities package
 company_name: Put your copyright information here
 description: A description of your project
 # Set to false to disable KaTeX math

@@ -1,0 +1,28 @@
+dataset:
+  name: MS_test
+  genetic: test_MS_genetic_file_split_by_chrom
+  sample: test_MS_sample_file
+run:
+  input:
+    pairs_file_full_path: ${dir:"${hydra:runtime.cwd}","${pairs_file}"}
+  mtc:
+    z_threshold: 99
+    filter_1_queries:
+    - unique_samples_count_case != 0 and unique_samples_count_control != 0
+    - (unique_samples_count_case/case_total_no_NA) > 0.01 and (unique_samples_count_control/control_total_no_NA)
+      >0.01
+    - non_zero_geno_combo_counts > 4
+    filter_2_queries:
+    - (case_total_no_NA/case_total_with_NA) > 0.1 & (control_total_no_NA/case_total_with_NA)
+      > 0.1
+  permutation:
+    max_iter: 10000000
+    odds_ratio: cc_odds
+  env: cluster
+  output:
+    output_folder_dir_full_path: ${dir:"${hydra:runtime.cwd}","${output_folder_dir}"}
+    result_path: outputs/${dataset_initial:${dataset.name}}/${dataset.name}/${file:${run.input.pairs_file_full_path}}/${exp}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    dir: ${run.output.output_folder_dir_full_path}/${run.output.result_path}
+output_folder_dir: ${hydra:runtime.cwd}
+exp: test
+pairs_file: test_MS_chr22.tsv

@@ -1,0 +1,12 @@
+defaults:
+    - dataset: MS_test
+    - hydra: default
+    - run: default
+    - override hydra/job_logging: rich_job_logging
+    - override hydra/hydra_logging: rich_hydra_logging
+
+dataset: ???
+interactive: ???
+output_folder_dir: /lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/new_pipeline_results #${hydra:runtime.cwd}
+exp: ???
+pairs_file: ???

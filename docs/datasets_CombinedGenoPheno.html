@@ -33,21 +33,6 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -62,7 +47,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="CombinedGenoPheno" class="doc_header"><code>class</code> <code>CombinedGenoPheno</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/CombinedGenoPheno.py#L15" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CombinedGenoPheno</code>(<strong><code>genetic_file_df</code></strong>:<code>DataFrame</code>, <strong><code>sample_file_df</code></strong>:<code>DataFrame</code>) :: <code>BaseModel</code></p>
+<h2 id="CombinedGenoPheno" class="doc_header"><code>class</code> <code>CombinedGenoPheno</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/CombinedGenoPheno.py#L18" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CombinedGenoPheno</code>(<strong><code>all_samples_geno_df</code></strong>:<code>DataFrame</code>, <strong><code>all_geno_df</code></strong>:<code>DataFrame</code>, <strong><code>sample_dict</code></strong>:<code>Dict</code>[<code>str</code>, <code>DataFrame</code>], <strong><code>genetic_files_dict</code></strong>:<code>Dict</code>[<code>str</code>, <a href="/corradin_ovp_utils/datasets_genetic_file.html#GeneticFileFormat"><code>GeneticFileFormat</code></a>]) :: <code>BaseModel</code></p>
 </blockquote>
 
 </div>
@@ -107,8 +92,598 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">init_from_OVPDataset</span><span class="p">(</span><span class="n">genetic_file</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">,</span> <span class="n">rsid_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rs77948203&quot;</span><span class="p">,</span> <span class="s2">&quot;rs9610458&quot;</span><span class="p">,</span> <span class="s2">&quot;rs134490&quot;</span><span class="p">,</span> <span class="s2">&quot;rs5756405&quot;</span><span class="p">])</span><span class="c1">#[&quot;case&quot;]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">genetic_file</span><span class="o">.</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;case&#39;: GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22)),
+ &#39;control&#39;: GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr22.gen&#39;, file_name=&#39;test_CONTROL_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22))}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">sample_file</span><span class="o">.</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;case&#39;: SampleFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/sample_file&#39;, full_file_name=&#39;MS_impute2_ALL_sample_out.tsv&#39;, file_name=&#39;MS_impute2_ALL_sample_out&#39;, extension=&#39;tsv&#39;, split_by_chromosome=None, chrom_num=None), pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;skiprows&#39;: [1]}, sample_id_col=&#39;ID_2&#39;, cov_cols=[&#39;sex&#39;], missing_col=&#39;missing&#39;),
+ &#39;control&#39;: SampleFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/sample_file&#39;, full_file_name=&#39;ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv&#39;, file_name=&#39;ALL_controls_58C_NBS_WTC2_impute2_sample_out&#39;, extension=&#39;tsv&#39;, split_by_chromosome=None, chrom_num=None), pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;skiprows&#39;: [1]}, sample_id_col=&#39;ID_2&#39;, cov_cols=[&#39;sex&#39;], missing_col=&#39;missing&#39;)}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">geno_dict</span><span class="p">,</span> <span class="n">sample_dict</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">process_datasets</span><span class="p">(</span><span class="n">genetic_file</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_file</span> <span class="o">=</span> <span class="n">geno_dict</span><span class="p">[</span><span class="s2">&quot;case&quot;</span><span class="p">]</span>
+<span class="n">test_file</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_file_chrom22</span> <span class="o">=</span> <span class="n">test_file</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">chrom</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">test_file_chrom22</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>GenFileObject(chrom=22, file_path=Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_file_chrom22</span><span class="o">.</span><span class="n">load_df</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dashes</th>
+      <th>rsid</th>
+      <th>position</th>
+      <th>alleleA</th>
+      <th>alleleB</th>
+      <th colspan="3" halign="left">WTCCCT473540</th>
+      <th colspan="2" halign="left">WTCCCT473530</th>
+      <th>...</th>
+      <th>WTCCCT473479</th>
+      <th colspan="3" halign="left">WTCCCT473432</th>
+      <th colspan="3" halign="left">WTCCCT473465</th>
+      <th colspan="3" halign="left">WTCCCT473421</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>AA</th>
+      <th>AB</th>
+      <th>BB</th>
+      <th>AA</th>
+      <th>AB</th>
+      <th>...</th>
+      <th>BB</th>
+      <th>AA</th>
+      <th>AB</th>
+      <th>BB</th>
+      <th>AA</th>
+      <th>AB</th>
+      <th>BB</th>
+      <th>AA</th>
+      <th>AB</th>
+      <th>BB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>---</td>
+      <td>rs77948203</td>
+      <td>21249165</td>
+      <td>G</td>
+      <td>A</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>---</td>
+      <td>rs1014626</td>
+      <td>21461017</td>
+      <td>C</td>
+      <td>T</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>---</td>
+      <td>rs9610458</td>
+      <td>22205353</td>
+      <td>C</td>
+      <td>T</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>---</td>
+      <td>rs5762201</td>
+      <td>27888455</td>
+      <td>A</td>
+      <td>G</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0.012</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>---</td>
+      <td>rs1004237</td>
+      <td>28068501</td>
+      <td>C</td>
+      <td>T</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>---</td>
+      <td>rs134490</td>
+      <td>28730175</td>
+      <td>C</td>
+      <td>T</td>
+      <td>0</td>
+      <td>0.232</td>
+      <td>0.768</td>
+      <td>0</td>
+      <td>0.014</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.356</td>
+      <td>0.644</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>---</td>
+      <td>rs4821519</td>
+      <td>37102100</td>
+      <td>G</td>
+      <td>C</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>1.000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>---</td>
+      <td>rs1003500</td>
+      <td>37262769</td>
+      <td>C</td>
+      <td>T</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>---</td>
+      <td>rs5756405</td>
+      <td>37310954</td>
+      <td>A</td>
+      <td>G</td>
+      <td>0</td>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>9 rows × 29321 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">ExceptionExpected</span><span class="p">(</span><span class="n">ex</span><span class="o">=</span><span class="ne">MemoryError</span><span class="p">,</span> <span class="n">regex</span> <span class="o">=</span> <span class="s2">&quot;is too big, input limit is 10K.&quot;</span><span class="p">):</span> <span class="n">test_file_chrom22</span><span class="o">.</span><span class="n">load_df</span><span class="p">(</span><span class="n">size_limit</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">init_from_OVPDataset</span><span class="p">(</span><span class="n">genetic_file</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">,</span> <span class="n">rsid_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">22</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rs77948203&quot;</span><span class="p">,</span> <span class="s2">&quot;rs9610458&quot;</span><span class="p">,</span> <span class="s2">&quot;rs134490&quot;</span><span class="p">,</span> <span class="s2">&quot;rs5756405&quot;</span><span class="p">]},</span> <span class="p">)</span><span class="c1">#[&quot;case&quot;]</span>
 <span class="n">test</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>reading genetic file and collecting found SNPs for file data/test_data/gen_file/test_CASE_MS_chr22.gen
+processing last batch
+reading genetic file and collecting found SNPs for file data/test_data/gen_file/test_CONTROL_MS_chr22.gen
+processing last batch
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>CombinedGenoPheno(num_snps=4, num_samples={&#39;case&#39;: 9772, &#39;control&#39;: 5175})</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">genetic_files_dict</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;case&#39;: GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22)),
+ &#39;control&#39;: GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr22.gen&#39;, file_name=&#39;test_CONTROL_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22))}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">genetic_files_dict</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;case&#39;: GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22)),
+ &#39;control&#39;: GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr22.gen&#39;, file_name=&#39;test_CONTROL_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22))}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">all_geno_df</span>
 </pre></div>
 
     </div>
@@ -139,7 +714,107 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>rsid</th>
+      <th>first</th>
+      <th>alleleA</th>
+      <th>alleleB</th>
+      <th>AA</th>
+      <th>AB</th>
+      <th>BB</th>
+    </tr>
+    <tr>
+      <th>id_col</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rs77948203</th>
+      <td>G</td>
+      <td>A</td>
+      <td>GG</td>
+      <td>AG</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>rs9610458</th>
+      <td>C</td>
+      <td>T</td>
+      <td>CC</td>
+      <td>CT</td>
+      <td>TT</td>
+    </tr>
+    <tr>
+      <th>rs134490</th>
+      <td>C</td>
+      <td>T</td>
+      <td>CC</td>
+      <td>CT</td>
+      <td>TT</td>
+    </tr>
+    <tr>
+      <th>rs5756405</th>
+      <td>A</td>
+      <td>G</td>
+      <td>AA</td>
+      <td>AG</td>
+      <td>GG</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">all_samples_geno_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id_col</th>
       <th>rs77948203</th>
       <th>rs9610458</th>
       <th>rs134490</th>
@@ -252,7 +927,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_geno_combination_df</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">rsid_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;rs9610458&quot;</span><span class="p">,</span> <span class="s2">&quot;rs134490&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">df</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">get_geno_each_sample_subset</span><span class="p">(</span><span class="s2">&quot;case&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -264,12 +939,352 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id_col</th>
+      <th>rs77948203</th>
+      <th>rs9610458</th>
+      <th>rs134490</th>
+      <th>rs5756405</th>
+    </tr>
+    <tr>
+      <th>ID_2</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>WTCCCT473540</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>NA</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473530</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473555</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473426</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473489</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>NA</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473455</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473479</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>CT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473432</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>CT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473465</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>NA</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473421</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+  </tbody>
+</table>
+<p>9772 rows × 4 columns</p>
 </div>
 </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">get_geno_each_sample_subset</span><span class="p">(</span><span class="s2">&quot;control&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id_col</th>
+      <th>rs77948203</th>
+      <th>rs9610458</th>
+      <th>rs134490</th>
+      <th>rs5756405</th>
+    </tr>
+    <tr>
+      <th>ID_2</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>WTCCCT443025</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>CT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT443065</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>CT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT443063</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>CC</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT443026</th>
+      <td>GG</td>
+      <td>CC</td>
+      <td>CT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT443066</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>TT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WS574632</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>TT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WS574661</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>BLOOD294452</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT511021</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT510948</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>TT</td>
+      <td>AA</td>
+    </tr>
+  </tbody>
+</table>
+<p>5175 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">sample_dict</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;control&#39;:                     ID_1  missing   plate  sex  case
+ ID_2                                                
+ WTCCCT443025   74717_A02        0   74717    2     0
+ WTCCCT443065   74717_A05        0   74717    2     0
+ WTCCCT443063   74717_A06        0   74717    2     0
+ WTCCCT443026   74717_B02        0   74717    2     0
+ WTCCCT443066   74717_B05        0   74717    2     0
+ ...                  ...      ...     ...  ...   ...
+ WS574632      101916_C07        0  101916    1     0
+ WS574661      101916_D07        0  101916    1     0
+ BLOOD294452   101806_F08        0  101806    1     0
+ WTCCCT511021  101816_D11        0  101816    2     0
+ WTCCCT510948  101816_F10        0  101816    1     0
+ 
+ [5175 rows x 5 columns], &#39;case&#39;:                     ID_1  missing  sex  case
+ ID_2                                        
+ WTCCCT473540   95300_D10        0    2     1
+ WTCCCT473530   95300_D11        0    1     1
+ WTCCCT473555   95300_D12        0    1     1
+ WTCCCT473426   95300_E01        0    2     1
+ WTCCCT473489   95300_E02        0    1     1
+ ...                  ...      ...  ...   ...
+ WTCCCT473455  116733_C03        0    1     1
+ WTCCCT473479  116733_D03        0    2     1
+ WTCCCT473432  116733_E03        0    2     1
+ WTCCCT473465  116733_F02        0    1     1
+ WTCCCT473421  116733_F03        0    1     1
+ 
+ [9772 rows x 4 columns]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_geno_combination_df</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">all_samples_geno_df</span><span class="p">,</span> <span class="n">rsid_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;rs9610458&quot;</span><span class="p">,</span> <span class="s2">&quot;rs134490&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -432,7 +1447,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_geno_combination_df</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">rsid_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;rs9610458&quot;</span><span class="p">,</span> <span class="s2">&quot;rs134490&quot;</span><span class="p">,</span> <span class="s2">&quot;rs5756405&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">df</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_geno_combination_df</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">all_samples_geno_df</span><span class="p">,</span> <span class="n">rsid_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;rs9610458&quot;</span><span class="p">,</span> <span class="s2">&quot;rs134490&quot;</span><span class="p">,</span> <span class="s2">&quot;rs5756405&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">df</span>
 </pre></div>
 
     </div>
@@ -441,15 +1456,6 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="output_wrapper">
 <div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
-</div>
-</div>
 
 <div class="output_area">
 
@@ -590,31 +1596,30 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_file</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">process_datasets</span><span class="p">(</span><span class="n">genetic_file</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">)[</span><span class="s2">&quot;case&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">geno_dict</span><span class="p">,</span> <span class="n">sample_dict</span><span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">process_datasets</span><span class="p">(</span><span class="n">genetic_file</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">)</span>
+<span class="n">test_file</span> <span class="o">=</span> <span class="n">geno_dict</span><span class="p">[</span><span class="s2">&quot;case&quot;</span><span class="p">]</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Testing-genetic-file-split-by-chromosome">Testing genetic file split by chromosome<a class="anchor-link" href="#Testing-genetic-file-split-by-chromosome"> </a></h3>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -638,7 +1643,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x7ff9d07e6100&gt;</pre>
+<pre>&lt;corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x1458d41d6a90&gt;</pre>
 </div>
 
 </div>
@@ -656,24 +1661,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">init_from_OVPDataset</span><span class="p">(</span><span class="n">genetic_file_split_by_chrom</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">,</span> <span class="n">chrom</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">rsid_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rs77948203&quot;</span><span class="p">,</span> <span class="s2">&quot;rs9610458&quot;</span><span class="p">])</span><span class="c1">#[&quot;case&quot;]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_split_by_chrom</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">init_from_OVPDataset</span><span class="p">(</span><span class="n">genetic_file_split_by_chrom</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">,</span> <span class="n">rsid_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">22</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rs77948203&quot;</span><span class="p">,</span> <span class="s2">&quot;rs9610458&quot;</span><span class="p">]})</span><span class="c1">#[&quot;case&quot;]</span>
 </pre></div>
 
     </div>
@@ -685,12 +1673,286 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Cannot find file data/test_data/gen_file/test_CASE_MS_chr1.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr2.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr3.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr4.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr5.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr6.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr7.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr8.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr9.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr10.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr11.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr12.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr13.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr14.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr15.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr16.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr17.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr18.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr19.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr20.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr21.gen
+reading genetic file and collecting found SNPs
+processing last batch
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr1.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr2.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr3.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr4.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr5.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr6.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr7.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr8.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr9.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr10.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr11.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr12.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr13.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr14.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr15.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr16.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr17.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr18.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr19.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr20.gen
+Cannot find file data/test_data/gen_file/test_CONTROL_MS_chr21.gen
+reading genetic file and collecting found SNPs
+processing last batch
 </pre>
 </div>
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Test case where we query from a chromosome that we have no file for</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">nbdev_test</span><span class="o">.</span><span class="n">ExceptionExpected</span><span class="p">(</span><span class="n">ex</span><span class="o">=</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;&#39;NoneType&#39; object has no attribute &#39;get_geno_each_sample&#39;&quot;</span><span class="p">):</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">init_from_OVPDataset</span><span class="p">(</span><span class="n">genetic_file_split_by_chrom</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">,</span> <span class="n">rsid_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">21</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rs77948203&quot;</span><span class="p">,</span> <span class="s2">&quot;rs9610458&quot;</span><span class="p">]})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Cannot find file data/test_data/gen_file/test_CASE_MS_chr1.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr2.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr3.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr4.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr5.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr6.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr7.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr8.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr9.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr10.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr11.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr12.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr13.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr14.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr15.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr16.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr17.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr18.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr19.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr20.gen
+Cannot find file data/test_data/gen_file/test_CASE_MS_chr21.gen
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_split_by_chrom</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>CombinedGenoPheno(num_snps=2, num_samples={&#39;case&#39;: 9772, &#39;control&#39;: 5175})</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genetic_file_single</span> <span class="o">=</span> <span class="n">test_data_catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;genetic_file_single&quot;</span><span class="p">)</span>
+<span class="n">sample_file_single</span> <span class="o">=</span> <span class="n">test_data_catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;sample_file_single&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">process_datasets</span><span class="p">(</span><span class="n">genetic_file_single</span><span class="p">,</span> <span class="n">sample_file_single</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>({&#39;single_file&#39;: GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None, chrom_num=22))},
+ {&#39;single_file&#39;:                     ID_1  missing  sex  case
+  ID_2                                        
+  WTCCCT473540   95300_D10        0    2     1
+  WTCCCT473530   95300_D11        0    1     1
+  WTCCCT473555   95300_D12        0    1     1
+  WTCCCT473426   95300_E01        0    2     1
+  WTCCCT473489   95300_E02        0    1     1
+  ...                  ...      ...  ...   ...
+  WTCCCT473455  116733_C03        0    1     1
+  WTCCCT473479  116733_D03        0    2     1
+  WTCCCT473432  116733_E03        0    2     1
+  WTCCCT473465  116733_F02        0    1     1
+  WTCCCT473421  116733_F03        0    1     1
+  
+  [9772 rows x 4 columns]})</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_single_file</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">init_from_OVPDataset</span><span class="p">(</span><span class="n">genetic_file_single</span><span class="p">,</span> <span class="n">sample_file_single</span><span class="p">,</span> <span class="n">rsid_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">22</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rs77948203&quot;</span><span class="p">,</span> <span class="s2">&quot;rs9610458&quot;</span><span class="p">,</span> <span class="s2">&quot;rs134490&quot;</span><span class="p">,</span> <span class="s2">&quot;rs5756405&quot;</span><span class="p">]},</span> <span class="p">)</span>
+<span class="n">test_single_file</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>reading genetic file and collecting found SNPs
+processing last batch
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>CombinedGenoPheno(num_snps=4, num_samples={&#39;single_file&#39;: 9772})</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_single_file</span><span class="o">.</span><span class="n">all_samples_geno_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -713,9 +1975,350 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>rsid</th>
+      <th>id_col</th>
       <th>rs77948203</th>
       <th>rs9610458</th>
+      <th>rs134490</th>
+      <th>rs5756405</th>
+    </tr>
+    <tr>
+      <th>sample_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>WTCCCT473540</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>NA</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473530</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473555</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473426</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473489</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>NA</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473455</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473479</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>CT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473432</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>CT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473465</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>NA</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473421</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+  </tbody>
+</table>
+<p>9772 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_single_file</span><span class="o">.</span><span class="n">get_geno_each_sample_subset</span><span class="p">(</span><span class="s2">&quot;single_file&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id_col</th>
+      <th>rs77948203</th>
+      <th>rs9610458</th>
+      <th>rs134490</th>
+      <th>rs5756405</th>
+    </tr>
+    <tr>
+      <th>ID_2</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>WTCCCT473540</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>NA</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473530</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473555</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473426</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473489</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>NA</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473455</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473479</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>CT</td>
+      <td>GG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473432</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>CT</td>
+      <td>AG</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473465</th>
+      <td>GG</td>
+      <td>CT</td>
+      <td>NA</td>
+      <td>AA</td>
+    </tr>
+    <tr>
+      <th>WTCCCT473421</th>
+      <td>GG</td>
+      <td>TT</td>
+      <td>TT</td>
+      <td>AG</td>
+    </tr>
+  </tbody>
+</table>
+<p>9772 rows × 4 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Testing-a-mix-of-rsids-and-position">Testing a mix of rsids and position<a class="anchor-link" href="#Testing-a-mix-of-rsids-and-position"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_position_and_rsid</span> <span class="o">=</span> <span class="n">CombinedGenoPheno</span><span class="o">.</span><span class="n">init_from_OVPDataset</span><span class="p">(</span><span class="n">genetic_file</span><span class="p">,</span> <span class="n">sample_file</span><span class="p">,</span>
+                                                                <span class="n">rsid_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">22</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rs77948203&quot;</span><span class="p">,</span> <span class="s2">&quot;21461017&quot;</span><span class="p">]},</span>
+                                                                <span class="n">id_col_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rsid&quot;</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">]</span> <span class="p">)</span><span class="c1">#[&quot;case&quot;]</span>
+<span class="n">test_position_and_rsid</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>reading genetic file and collecting found SNPs
+processing last batch
+reading genetic file and collecting found SNPs
+processing last batch
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>CombinedGenoPheno(num_snps=2, num_samples={&#39;case&#39;: 9772, &#39;control&#39;: 5175})</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_position_and_rsid</span><span class="o">.</span><span class="n">all_samples_geno_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id_col</th>
+      <th>rs77948203</th>
+      <th>21461017</th>
     </tr>
     <tr>
       <th>sample_id</th>
@@ -747,7 +2350,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
     <tr>
       <th>WTCCCT473489</th>
       <td>GG</td>
-      <td>CT</td>
+      <td>TT</td>
     </tr>
     <tr>
       <th>...</th>
@@ -757,7 +2360,7 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
     <tr>
       <th>WS574632</th>
       <td>GG</td>
-      <td>CT</td>
+      <td>TT</td>
     </tr>
     <tr>
       <th>WS574661</th>
@@ -767,17 +2370,17 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
     <tr>
       <th>BLOOD294452</th>
       <td>GG</td>
-      <td>CT</td>
+      <td>TT</td>
     </tr>
     <tr>
       <th>WTCCCT511021</th>
       <td>GG</td>
-      <td>CT</td>
+      <td>TT</td>
     </tr>
     <tr>
       <th>WTCCCT510948</th>
       <td>GG</td>
-      <td>CT</td>
+      <td>TT</td>
     </tr>
   </tbody>
 </table>
@@ -800,156 +2403,10 @@ nb_path: "05_datasets_CombinedGenoPheno.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genetic_file_split_by_chrom</span> <span class="o">=</span> <span class="n">test_data_catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;genetic_file_split_by_chrom&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nbdev</span><span class="o">.</span><span class="n">test_eq</span><span class="p">(</span><span class="n">test_position_and_rsid</span><span class="o">.</span><span class="n">all_samples_geno_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genetic_file_single</span> <span class="o">=</span> <span class="n">test_data_catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;genetic_file_single&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_file</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>dict_items([(&#39;case&#39;, SampleFileFormat(filepath=Path(&#39;data/test_data/sample_file/MS_impute2_ALL_sample_out.tsv&#39;), pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;skiprows&#39;: [1]}, sample_id_col=&#39;ID_2&#39;, cov_cols=[&#39;sex&#39;], missing_col=&#39;missing&#39;)), (&#39;control&#39;, SampleFileFormat(filepath=Path(&#39;data/test_data/sample_file/ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv&#39;), pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;skiprows&#39;: [1]}, sample_id_col=&#39;ID_2&#39;, cov_cols=[&#39;sex&#39;], missing_col=&#39;missing&#39;))])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">genetic_file</span><span class="o">.</span><span class="n">files</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: GenFileFormat(filepath=Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=Index([&#39;WTCCCT473540&#39;, &#39;WTCCCT473530&#39;, &#39;WTCCCT473555&#39;, &#39;WTCCCT473426&#39;,
-        &#39;WTCCCT473489&#39;, &#39;WTCCCT473456&#39;, &#39;WTCCCT473435&#39;, &#39;WTCCCT473522&#39;,
-        &#39;WTCCCT473500&#39;, &#39;WTCCCT473537&#39;,
-        ...
-        &#39;WTCCCT466427&#39;, &#39;WTCCCT449701&#39;, &#39;WTCCCT449713&#39;, &#39;WTCCCT449725&#39;,
-        &#39;WTCCCT473041&#39;, &#39;WTCCCT473455&#39;, &#39;WTCCCT473479&#39;, &#39;WTCCCT473432&#39;,
-        &#39;WTCCCT473465&#39;, &#39;WTCCCT473421&#39;],
-       dtype=&#39;object&#39;, name=&#39;ID_2&#39;, length=9772), current_file_path=Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;)),
- &#39;control&#39;: GenFileFormat(filepath=Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr22.gen&#39;), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=Index([&#39;WTCCCT443025&#39;, &#39;WTCCCT443065&#39;, &#39;WTCCCT443063&#39;, &#39;WTCCCT443026&#39;,
-        &#39;WTCCCT443066&#39;, &#39;WTCCCT443064&#39;, &#39;WTCCCT443028&#39;, &#39;WTCCCT443058&#39;,
-        &#39;WTCCCT443059&#39;, &#39;WTCCCT443060&#39;,
-        ...
-        &#39;CS425039&#39;, &#39;BLOOD292401&#39;, &#39;BLOOD292382&#39;, &#39;WS577911&#39;, &#39;WS578376&#39;,
-        &#39;WS574632&#39;, &#39;WS574661&#39;, &#39;BLOOD294452&#39;, &#39;WTCCCT511021&#39;, &#39;WTCCCT510948&#39;],
-       dtype=&#39;object&#39;, name=&#39;ID_2&#39;, length=5175), current_file_path=Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr22.gen&#39;))}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">vars</span><span class="p">(</span><span class="n">sample_file</span><span class="o">.</span><span class="n">files</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: SampleFileFormat(filepath=Path(&#39;data/test_data/sample_file/MS_impute2_ALL_sample_out.tsv&#39;), pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;skiprows&#39;: [1]}, sample_id_col=&#39;ID_2&#39;, cov_cols=[&#39;sex&#39;], missing_col=&#39;missing&#39;),
- &#39;control&#39;: SampleFileFormat(filepath=Path(&#39;data/test_data/sample_file/ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv&#39;), pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;skiprows&#39;: [1]}, sample_id_col=&#39;ID_2&#39;, cov_cols=[&#39;sex&#39;], missing_col=&#39;missing&#39;)}</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

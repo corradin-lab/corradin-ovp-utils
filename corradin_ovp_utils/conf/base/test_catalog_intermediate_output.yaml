@@ -1,0 +1,50 @@
+_tab_sep_first_col_index: &tab_sep_first_col_index
+    type: pandas.CSVDataSet
+    load_args:
+        sep: "\t"
+        index_col: 0
+    save_args:
+        sep: "\t"
+        index: True
+            
+geno_each_sample:
+    <<: *tab_sep_first_col_index
+    filepath: data/test_data/geno_each_sample/geno_each_sample.tsv
+    
+case_geno_each_sample:
+    <<: *tab_sep_first_col_index
+    filepath: data/test_data/geno_each_sample/case_geno_each_sample.tsv
+    
+
+control_geno_each_sample:
+    <<: *tab_sep_first_col_index
+    filepath: data/test_data/geno_each_sample/control_geno_each_sample.tsv
+    
+
+all_geno_df:
+    <<: *tab_sep_first_col_index
+    filepath: data/test_data/geno_each_sample/all_geno_df.tsv
+
+odds_ratio_df_rs9610458_rs77948203:
+    type: pickle.PickleDataSet
+    filepath: data/test_data/odds_ratio_df/odds_ratio_df_rs9610458_rs77948203.pkl
+
+        
+odds_ratio_df_rs134490_rs1004237:
+    type: pandas.ParquetDataSet
+    filepath: data/test_data/odds_ratio_df/odds_ratio_df_rs134490_rs1004237.parquet
+#     load_args:
+#         sep: "\t"
+#     save_args:
+#         sep: "\t"
+#         index: False
+    
+
+summary_df_6_pairs_chrom_22:
+    type: pandas.CSVDataSet
+    filepath: data/test_data/summary_df/summary_df_6_pairs_chrom_22.tsv
+    load_args:
+        sep: "\t"
+    save_args:
+        sep: "\t"
+        index: False

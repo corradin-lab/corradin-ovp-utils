@@ -1,0 +1,7 @@
+empty_geno_combo_after_permute_rs9610458_CC_rs77948203_AA:
+    type: pickle.PickleDataSet
+    filepath: data/test_data/error_handling/empty_geno_combo_after_permute_rs9610458_CC_rs77948203_AA.pkl
+    
+permutation_error_rs134490_rs5762201_UKB:
+    type: pickle.PickleDataSet
+    filepath: data/test_data/error_handling/permutation_error_rs134490_rs5762201_UKB.pkl

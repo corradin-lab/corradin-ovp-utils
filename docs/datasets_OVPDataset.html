@@ -33,21 +33,6 @@ nb_path: "02_datasets_OVPDataset.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -69,7 +54,7 @@ nb_path: "02_datasets_OVPDataset.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="OVPDataSetError" class="doc_header"><code>class</code> <code>OVPDataSetError</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L37" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>OVPDataSetError</code>() :: <code>Exception</code></p>
+<h2 id="OVPDataSetError" class="doc_header"><code>class</code> <code>OVPDataSetError</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L39" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>OVPDataSetError</code>() :: <code>Exception</code></p>
 </blockquote>
 <p>Common base class for all non-exit exceptions.</p>
 
@@ -94,7 +79,7 @@ nb_path: "02_datasets_OVPDataset.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="parse_class" class="doc_header"><code>parse_class</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>parse_class</code>(<strong><code>key</code></strong>, <strong><code>class_obj</code></strong>:<code>str</code>)</p>
+<h4 id="parse_class" class="doc_header"><code>parse_class</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L42" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>parse_class</code>(<strong><code>key</code></strong>, <strong><code>class_obj</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Parse and instantiate a dataset class using the configuration provided.
 Args:
@@ -135,7 +120,7 @@ Returns:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">parse_class</span><span class="p">(</span><span class="s2">&quot;file_format&quot;</span><span class="p">,</span> <span class="s2">&quot;genetic_file.GenFileFormat&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">genetic_file</span><span class="o">.</span><span class="n">GenFileFormat</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
@@ -152,7 +137,7 @@ Returns:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">parse_class</span><span class="p">(</span><span class="s2">&quot;file_format&quot;</span><span class="p">,</span> <span class="s2">&quot;corradin_ovp_utils.datasets.genetic_file.GenFileFormat&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">genetic_file</span><span class="o">.</span><span class="n">GenFileFormat</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
@@ -184,8 +169,7 @@ Returns:
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>namespace(case=GenFileFormat(filepath=Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=None),
-          control=GenFileFormat(filepath=Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr22.gen&#39;), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=None))</pre>
+<pre>namespace(case=GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=None, current_file_path=None), control=GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr22.gen&#39;, file_name=&#39;test_CONTROL_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=None, current_file_path=None))</pre>
 </div>
 
 </div>
@@ -218,7 +202,7 @@ Returns:
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>namespace(single_file=GenFileFormat(filepath=Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=None))</pre>
+<pre>namespace(single_file=GenFileFormat(file_path=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None), prob_n_cols=3, initial_cols=[&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;], rsid_col=&#39;rsid&#39;, ref_col=&#39;ref&#39;, alt_col=&#39;alt&#39;, ref_alt_delim=None, pandas_args={&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}, sample_ids=None, current_file_path=None))</pre>
 </div>
 
 </div>
@@ -229,549 +213,6 @@ Returns:
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="SingleFilePathSchema" class="doc_header"><code>class</code> <code>SingleFilePathSchema</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L112" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SingleFilePathSchema</code>(<strong><code>folder</code></strong>:<code>str</code>, <strong><code>full_file_name</code></strong>:<code>str</code>, <strong><code>file_name</code></strong>:<code>str</code>=<em><code>None</code></em>, <strong><code>extension</code></strong>:<code>str</code>=<em><code>None</code></em>, <strong><code>split_by_chromosome</code></strong>:<code>bool</code>=<em><code>None</code></em>) :: <code>BaseModel</code></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="MultipleFilePathSchema" class="doc_header"><code>class</code> <code>MultipleFilePathSchema</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L153" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MultipleFilePathSchema</code>()</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="CaseControlFilePathSchema" class="doc_header"><code>class</code> <code>CaseControlFilePathSchema</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L170" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CaseControlFilePathSchema</code>(<strong><code>case</code></strong>:<a href="/corradin_ovp_utils/datasets_OVPDataset.html#SingleFilePathSchema"><code>SingleFilePathSchema</code></a>, <strong><code>control</code></strong>:<a href="/corradin_ovp_utils/datasets_OVPDataset.html#SingleFilePathSchema"><code>SingleFilePathSchema</code></a>, <strong><code>common_folder</code></strong>:<code>Union[str, NoneType]]</code>=<em><code>None</code></em>) :: <a href="/corradin_ovp_utils/datasets_OVPDataset.html#MultipleFilePathSchema"><code>MultipleFilePathSchema</code></a></p>
-</blockquote>
-<p>CaseControlFilePathSchema(case: corradin_ovp_utils.datasets.OVPDataset.SingleFilePathSchema, control: corradin_ovp_utils.datasets.OVPDataset.SingleFilePathSchema, common_folder: dataclasses.InitVar[typing.Union[str, NoneType]] = None)</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Testing-single-file-path">Testing single file path<a class="anchor-link" href="#Testing-single-file-path"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file_single&quot;</span><span class="p">][</span><span class="s2">&quot;file_path&quot;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;folder&#39;: &#39;data/test_data/gen_file&#39;,
- &#39;full_file_name&#39;: &#39;test_CASE_MS_chr22.gen&#39;}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_genetic_file_single_file_path</span> <span class="o">=</span> <span class="n">SingleFilePathSchema</span><span class="p">(</span><span class="o">**</span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file_single&quot;</span><span class="p">][</span><span class="s2">&quot;file_path&quot;</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">test_genetic_file_single_file_path</span><span class="o">.</span><span class="n">full_file_path</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/test_data/gen_file/test_CASE_MS_chr22.gen&quot;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">test_genetic_file_single_file_path</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Testing-case-control-file-path">Testing case control file path<a class="anchor-link" href="#Testing-case-control-file-path"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file&quot;</span><span class="p">][</span><span class="s2">&quot;file_path&quot;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: {&#39;folder&#39;: &#39;data/test_data/gen_file&#39;,
-  &#39;full_file_name&#39;: &#39;test_CASE_MS_chr22.gen&#39;},
- &#39;control&#39;: {&#39;folder&#39;: &#39;data/test_data/gen_file&#39;,
-  &#39;full_file_name&#39;: &#39;test_CONTROL_MS_chr22.gen&#39;}}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_genetic_file_cc_file_path</span> <span class="o">=</span> <span class="n">CaseControlFilePathSchema</span><span class="p">(</span><span class="o">**</span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file&quot;</span><span class="p">][</span><span class="s2">&quot;file_path&quot;</span><span class="p">])</span>
-<span class="n">test_genetic_file_cc_file_path</span><span class="o">.</span><span class="n">full_file_path</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;),
- &#39;control&#39;: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr22.gen&#39;)}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_genetic_file_cc_file_path</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None),
- &#39;control&#39;: SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr22.gen&#39;, file_name=&#39;test_CONTROL_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None)}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Common folder</p>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file_common_folder&quot;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;type&#39;: &#39;nbdev_tutorial.datasets.OVPDataset.OVPDataset&#39;,
- &#39;file_format&#39;: &#39;genetic_file.GenFileFormat&#39;,
- &#39;load_args&#39;: {&#39;prob_n_cols&#39;: 3,
-  &#39;initial_cols&#39;: [&#39;dashes&#39;, &#39;rsid&#39;, &#39;position&#39;, &#39;ref&#39;, &#39;alt&#39;],
-  &#39;rsid_col&#39;: &#39;rsid&#39;,
-  &#39;ref_col&#39;: &#39;ref&#39;,
-  &#39;alt_col&#39;: &#39;alt&#39;,
-  &#39;pandas_args&#39;: {&#39;sep&#39;: &#39; &#39;, &#39;header&#39;: None}},
- &#39;file_type&#39;: &#39;OVPDataset.CaseControlFilePathSchema&#39;,
- &#39;file_path&#39;: {&#39;common_folder&#39;: &#39;data/test_data/gen_file&#39;,
-  &#39;case&#39;: {&#39;full_file_name&#39;: &#39;test_CASE_MS_chr22.gen&#39;},
-  &#39;control&#39;: {&#39;full_file_name&#39;: &#39;test_CONTROL_MS_chr22.gen&#39;}}}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_genetic_file_cc_file_path_common_folder</span> <span class="o">=</span> <span class="n">CaseControlFilePathSchema</span><span class="p">(</span><span class="o">**</span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file_common_folder&quot;</span><span class="p">][</span><span class="s2">&quot;file_path&quot;</span><span class="p">])</span>
-<span class="n">test_genetic_file_cc_file_path_common_folder</span><span class="o">.</span><span class="n">full_file_path</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;),
- &#39;control&#39;: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr22.gen&#39;)}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_genetic_file_cc_file_path_common_folder</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>CaseControlFilePathSchema(case=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None), control=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr22.gen&#39;, file_name=&#39;test_CONTROL_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None))</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Testing-case-control-file-path-split-by-chromosome">Testing case control file path split by chromosome<a class="anchor-link" href="#Testing-case-control-file-path-split-by-chromosome"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file_split_by_chrom&quot;</span><span class="p">][</span><span class="s2">&quot;file_path&quot;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;common_folder&#39;: &#39;data/test_data/gen_file&#39;,
- &#39;case&#39;: {&#39;split_by_chromosome&#39;: True,
-  &#39;full_file_name&#39;: &#39;test_CASE_MS_chr{chrom_num}.gen&#39;},
- &#39;control&#39;: {&#39;split_by_chromosome&#39;: True,
-  &#39;full_file_name&#39;: &#39;test_CONTROL_MS_chr{chrom_num}.gen&#39;}}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_genetic_file_split_by_chrom</span> <span class="o">=</span> <span class="n">CaseControlFilePathSchema</span><span class="p">(</span><span class="o">**</span><span class="n">conf_test_data_catalog</span><span class="p">[</span><span class="s2">&quot;genetic_file_split_by_chrom&quot;</span><span class="p">][</span><span class="s2">&quot;file_path&quot;</span><span class="p">])</span>
-<span class="n">test_genetic_file_split_by_chrom</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>CaseControlFilePathSchema(case=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr{chrom_num}.gen&#39;, file_name=&#39;test_CASE_MS_chr{chrom_num}&#39;, extension=&#39;gen&#39;, split_by_chromosome=True), control=SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr{chrom_num}.gen&#39;, file_name=&#39;test_CONTROL_MS_chr{chrom_num}&#39;, extension=&#39;gen&#39;, split_by_chromosome=True))</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_genetic_file_split_by_chrom</span><span class="o">.</span><span class="n">full_file_path</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: {1: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr1.gen&#39;),
-  2: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr2.gen&#39;),
-  3: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr3.gen&#39;),
-  4: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr4.gen&#39;),
-  5: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr5.gen&#39;),
-  6: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr6.gen&#39;),
-  7: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr7.gen&#39;),
-  8: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr8.gen&#39;),
-  9: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr9.gen&#39;),
-  10: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr10.gen&#39;),
-  11: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr11.gen&#39;),
-  12: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr12.gen&#39;),
-  13: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr13.gen&#39;),
-  14: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr14.gen&#39;),
-  15: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr15.gen&#39;),
-  16: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr16.gen&#39;),
-  17: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr17.gen&#39;),
-  18: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr18.gen&#39;),
-  19: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr19.gen&#39;),
-  20: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr20.gen&#39;),
-  21: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr21.gen&#39;),
-  22: Path(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;)},
- &#39;control&#39;: {1: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr1.gen&#39;),
-  2: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr2.gen&#39;),
-  3: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr3.gen&#39;),
-  4: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr4.gen&#39;),
-  5: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr5.gen&#39;),
-  6: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr6.gen&#39;),
-  7: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr7.gen&#39;),
-  8: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr8.gen&#39;),
-  9: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr9.gen&#39;),
-  10: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr10.gen&#39;),
-  11: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr11.gen&#39;),
-  12: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr12.gen&#39;),
-  13: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr13.gen&#39;),
-  14: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr14.gen&#39;),
-  15: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr15.gen&#39;),
-  16: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr16.gen&#39;),
-  17: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr17.gen&#39;),
-  18: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr18.gen&#39;),
-  19: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr19.gen&#39;),
-  20: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr20.gen&#39;),
-  21: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr21.gen&#39;),
-  22: Path(&#39;data/test_data/gen_file/test_CONTROL_MS_chr22.gen&#39;)}}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -790,7 +231,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="OVPDataset" class="doc_header"><code>class</code> <code>OVPDataset</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L204" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>OVPDataset</code>(<strong><code>file_type</code></strong>, <strong><code>file_format</code></strong>, <strong><code>file_path</code></strong>, <strong><code>common_folder</code></strong>=<em><code>None</code></em>, <strong><code>load_args</code></strong>:<code>Dict</code>[<code>str</code>, <code>Any</code>]=<em><code>None</code></em>, <strong><code>version</code></strong>:<code>Version</code>=<em><code>None</code></em>, <strong><code>credentials</code></strong>:<code>Dict</code>[<code>str</code>, <code>Any</code>]=<em><code>None</code></em>, <strong><code>fs_args</code></strong>:<code>Dict</code>[<code>str</code>, <code>Any</code>]=<em><code>None</code></em>) :: <code>AbstractVersionedDataSet</code></p>
+<h2 id="OVPDataset" class="doc_header"><code>class</code> <code>OVPDataset</code><a href="https://github.com/corradin-lab/corradin_ovp_utils/tree/master/ #https://github.com/hoangthienan95/corradin_ovp_utils/tree/master/corradin_ovp_utils/datasets/OVPDataset.py#L124" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>OVPDataset</code>(<strong><code>file_type</code></strong>, <strong><code>file_format</code></strong>, <strong><code>file_path</code></strong>, <strong><code>common_folder</code></strong>=<em><code>None</code></em>, <strong><code>load_args</code></strong>:<code>Dict</code>[<code>str</code>, <code>Any</code>]=<em><code>None</code></em>, <strong><code>version</code></strong>:<code>Version</code>=<em><code>None</code></em>, <strong><code>credentials</code></strong>:<code>Dict</code>[<code>str</code>, <code>Any</code>]=<em><code>None</code></em>, <strong><code>fs_args</code></strong>:<code>Dict</code>[<code>str</code>, <code>Any</code>]=<em><code>None</code></em>) :: <code>AbstractVersionedDataSet</code></p>
 </blockquote>
 <p><code>AbstractVersionedDataSet</code> is the base class for all versioned data set
 implementations. All data sets that implement versioning should extend this
@@ -849,21 +290,6 @@ abstract class and implement the methods marked as abstract.</p>
     
 <div class="cell border-box-sizing code_cell rendered">
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/nbdev_tutorial_2nd_try/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -890,7 +316,7 @@ abstract class and implement the methods marked as abstract.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;nbdev_tutorial.datasets.OVPDataset.OVPDataset&#39;</pre>
+<pre>&#39;corradin_ovp_utils.datasets.OVPDataset.OVPDataset&#39;</pre>
 </div>
 
 </div>
@@ -924,7 +350,7 @@ abstract class and implement the methods marked as abstract.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;__main__.OVPDataset at 0x7fb80817cfd0&gt;</pre>
+<pre>&lt;__main__.OVPDataset at 0x1497c8acf760&gt;</pre>
 </div>
 
 </div>
@@ -972,119 +398,106 @@ abstract class and implement the methods marked as abstract.</p>
 
 <div class="output_area">
 
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-47-05762c8173cf&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>test_case_file<span class="ansi-blue-fg">.</span>get_genotypes_df<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/genetic_file/Gen.py</span> in <span class="ansi-cyan-fg">get_genotypes_df</span><span class="ansi-blue-fg">(self, chrom, rsid_list, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    126</span>             geno_df <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>get_rsid_df<span class="ansi-blue-fg">(</span>chrom<span class="ansi-blue-fg">=</span>chrom<span class="ansi-blue-fg">,</span> rsid_list <span class="ansi-blue-fg">=</span> rsid_list<span class="ansi-blue-fg">,</span> usecols <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>gen_info_cols<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    127</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 128</span><span class="ansi-red-fg">             </span>geno_df <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>load<span class="ansi-blue-fg">(</span>chrom <span class="ansi-blue-fg">=</span> chrom<span class="ansi-blue-fg">,</span> usecols <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>gen_info_cols<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    129</span>         geno_df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;homo_ref&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> geno_df<span class="ansi-blue-fg">.</span>loc<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">[</span>self<span class="ansi-blue-fg">.</span>ref_col<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">*</span><span class="ansi-cyan-fg">2</span>
+<span class="ansi-green-intense-fg ansi-bold">    130</span>         make_het_geno_func = lambda row: &#39;&#39;.join(sorted([row[self.ref_col],
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/genetic_file/Gen.py</span> in <span class="ansi-cyan-fg">load</span><span class="ansi-blue-fg">(self, chrom, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    104</span>     <span class="ansi-green-fg">def</span> load<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> chrom<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    105</span>         self<span class="ansi-blue-fg">.</span>current_file_path <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>get_resolved_file_path<span class="ansi-blue-fg">(</span>chrom<span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># use another attribute so `load` and `_load_unprocessed` can share</span>
+<span class="ansi-green-fg">--&gt; 106</span><span class="ansi-red-fg">         </span>df <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>read_csv<span class="ansi-blue-fg">(</span>filepath_or_buffer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>current_file_path<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>self<span class="ansi-blue-fg">.</span>load_args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    107</span>         <span class="ansi-red-fg">#df.columns = self.column_headers</span>
+<span class="ansi-green-intense-fg ansi-bold">    108</span>         <span class="ansi-green-fg">return</span> df
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ref</th>
-      <th>alt</th>
-      <th>homo_ref</th>
-      <th>het</th>
-      <th>homo_alt</th>
-    </tr>
-    <tr>
-      <th>rsid</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>rs77948203</th>
-      <td>G</td>
-      <td>A</td>
-      <td>GG</td>
-      <td>AG</td>
-      <td>AA</td>
-    </tr>
-    <tr>
-      <th>rs1014626</th>
-      <td>C</td>
-      <td>T</td>
-      <td>CC</td>
-      <td>CT</td>
-      <td>TT</td>
-    </tr>
-    <tr>
-      <th>rs9610458</th>
-      <td>C</td>
-      <td>T</td>
-      <td>CC</td>
-      <td>CT</td>
-      <td>TT</td>
-    </tr>
-    <tr>
-      <th>rs5762201</th>
-      <td>A</td>
-      <td>G</td>
-      <td>AA</td>
-      <td>AG</td>
-      <td>GG</td>
-    </tr>
-    <tr>
-      <th>rs1004237</th>
-      <td>C</td>
-      <td>T</td>
-      <td>CC</td>
-      <td>CT</td>
-      <td>TT</td>
-    </tr>
-    <tr>
-      <th>rs134490</th>
-      <td>C</td>
-      <td>T</td>
-      <td>CC</td>
-      <td>CT</td>
-      <td>TT</td>
-    </tr>
-    <tr>
-      <th>rs4821519</th>
-      <td>G</td>
-      <td>C</td>
-      <td>GG</td>
-      <td>CG</td>
-      <td>CC</td>
-    </tr>
-    <tr>
-      <th>rs1003500</th>
-      <td>C</td>
-      <td>T</td>
-      <td>CC</td>
-      <td>CT</td>
-      <td>TT</td>
-    </tr>
-    <tr>
-      <th>rs5756405</th>
-      <td>A</td>
-      <td>G</td>
-      <td>AA</td>
-      <td>AG</td>
-      <td>GG</td>
-    </tr>
-  </tbody>
-</table>
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/genetic_file/Gen.py</span> in <span class="ansi-cyan-fg">load_args</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">     92</span>     <span class="ansi-green-fg">def</span> load_args<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     93</span>         load_args <span class="ansi-blue-fg">=</span> deepcopy<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>pandas_args<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 94</span><span class="ansi-red-fg">         </span>col_names <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>column_headers
+<span class="ansi-green-intense-fg ansi-bold">     95</span>         load_args<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;names&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> col_names
+<span class="ansi-green-intense-fg ansi-bold">     96</span>         <span class="ansi-green-fg">return</span> load_args
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/genetic_file/Gen.py</span> in <span class="ansi-cyan-fg">column_headers</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">     69</span>     <span class="ansi-green-fg">def</span> column_headers<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     70</span>         <span class="ansi-red-fg">#read the first non-header line</span>
+<span class="ansi-green-fg">---&gt; 71</span><span class="ansi-red-fg">         </span>first_line_df <span class="ansi-blue-fg">=</span> next<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_load_unprocessed<span class="ansi-blue-fg">(</span>chunksize<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     72</span>         generator <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>col_name_generator<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     73</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>next<span class="ansi-blue-fg">(</span>generator<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> col <span class="ansi-green-fg">in</span> first_line_df<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/genetic_file/Gen.py</span> in <span class="ansi-cyan-fg">_load_unprocessed</span><span class="ansi-blue-fg">(self, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     98</span>     <span class="ansi-blue-fg">@</span>delegates<span class="ansi-blue-fg">(</span>pd<span class="ansi-blue-fg">.</span>read_csv<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     99</span>     <span class="ansi-green-fg">def</span> _load_unprocessed<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 100</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> pd<span class="ansi-blue-fg">.</span>read_csv<span class="ansi-blue-fg">(</span>filepath_or_buffer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>current_file_path<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>self<span class="ansi-blue-fg">.</span>pandas_args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    101</span> 
+<span class="ansi-green-intense-fg ansi-bold">    102</span> 
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ansi-cyan-fg">read_csv</span><span class="ansi-blue-fg">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="ansi-green-intense-fg ansi-bold">    603</span>     kwds<span class="ansi-blue-fg">.</span>update<span class="ansi-blue-fg">(</span>kwds_defaults<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    604</span> 
+<span class="ansi-green-fg">--&gt; 605</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _read<span class="ansi-blue-fg">(</span>filepath_or_buffer<span class="ansi-blue-fg">,</span> kwds<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    606</span> 
+<span class="ansi-green-intense-fg ansi-bold">    607</span> 
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ansi-cyan-fg">_read</span><span class="ansi-blue-fg">(filepath_or_buffer, kwds)</span>
+<span class="ansi-green-intense-fg ansi-bold">    455</span> 
+<span class="ansi-green-intense-fg ansi-bold">    456</span>     <span class="ansi-red-fg"># Create the parser.</span>
+<span class="ansi-green-fg">--&gt; 457</span><span class="ansi-red-fg">     </span>parser <span class="ansi-blue-fg">=</span> TextFileReader<span class="ansi-blue-fg">(</span>filepath_or_buffer<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    458</span> 
+<span class="ansi-green-intense-fg ansi-bold">    459</span>     <span class="ansi-green-fg">if</span> chunksize <span class="ansi-green-fg">or</span> iterator<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, f, engine, **kwds)</span>
+<span class="ansi-green-intense-fg ansi-bold">    812</span>             self<span class="ansi-blue-fg">.</span>options<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;has_index_names&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> kwds<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;has_index_names&#34;</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">    813</span> 
+<span class="ansi-green-fg">--&gt; 814</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_engine <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_make_engine<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>engine<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    815</span> 
+<span class="ansi-green-intense-fg ansi-bold">    816</span>     <span class="ansi-green-fg">def</span> close<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ansi-cyan-fg">_make_engine</span><span class="ansi-blue-fg">(self, engine)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1043</span>             )
+<span class="ansi-green-intense-fg ansi-bold">   1044</span>         <span class="ansi-red-fg"># error: Too many arguments for &#34;ParserBase&#34;</span>
+<span class="ansi-green-fg">-&gt; 1045</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> mapping<span class="ansi-blue-fg">[</span>engine<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>f<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>self<span class="ansi-blue-fg">.</span>options<span class="ansi-blue-fg">)</span>  <span class="ansi-red-fg"># type: ignore[call-arg]</span>
+<span class="ansi-green-intense-fg ansi-bold">   1046</span> 
+<span class="ansi-green-intense-fg ansi-bold">   1047</span>     <span class="ansi-green-fg">def</span> _failover_to_python<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, src, **kwds)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1860</span> 
+<span class="ansi-green-intense-fg ansi-bold">   1861</span>         <span class="ansi-red-fg"># open handles</span>
+<span class="ansi-green-fg">-&gt; 1862</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_open_handles<span class="ansi-blue-fg">(</span>src<span class="ansi-blue-fg">,</span> kwds<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1863</span>         <span class="ansi-green-fg">assert</span> self<span class="ansi-blue-fg">.</span>handles <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-green-intense-fg ansi-bold">   1864</span>         <span class="ansi-green-fg">for</span> key <span class="ansi-green-fg">in</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;storage_options&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;encoding&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;memory_map&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;compression&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ansi-cyan-fg">_open_handles</span><span class="ansi-blue-fg">(self, src, kwds)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1355</span>         Let the readers open IOHanldes after they are done <span class="ansi-green-fg">with</span> their potential raises<span class="ansi-blue-fg">.</span>
+<span class="ansi-green-intense-fg ansi-bold">   1356</span>         &#34;&#34;&#34;
+<span class="ansi-green-fg">-&gt; 1357</span><span class="ansi-red-fg">         self.handles = get_handle(
+</span><span class="ansi-green-intense-fg ansi-bold">   1358</span>             src<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">   1359</span>             <span class="ansi-blue-fg">&#34;r&#34;</span><span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/common.py</span> in <span class="ansi-cyan-fg">get_handle</span><span class="ansi-blue-fg">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="ansi-green-intense-fg ansi-bold">    556</span> 
+<span class="ansi-green-intense-fg ansi-bold">    557</span>     <span class="ansi-red-fg"># open URLs</span>
+<span class="ansi-green-fg">--&gt; 558</span><span class="ansi-red-fg">     ioargs = _get_filepath_or_buffer(
+</span><span class="ansi-green-intense-fg ansi-bold">    559</span>         path_or_buf<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    560</span>         encoding<span class="ansi-blue-fg">=</span>encoding<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/.venv/lib/python3.8/site-packages/pandas/io/common.py</span> in <span class="ansi-cyan-fg">_get_filepath_or_buffer</span><span class="ansi-blue-fg">(filepath_or_buffer, encoding, compression, mode, storage_options)</span>
+<span class="ansi-green-intense-fg ansi-bold">    369</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> is_file_like<span class="ansi-blue-fg">(</span>filepath_or_buffer<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    370</span>         msg <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">f&#34;Invalid file path or buffer object type: {type(filepath_or_buffer)}&#34;</span>
+<span class="ansi-green-fg">--&gt; 371</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span>msg<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    372</span> 
+<span class="ansi-green-intense-fg ansi-bold">    373</span>     return IOArgs(
+
+<span class="ansi-red-fg">ValueError</span>: Invalid file path or buffer object type: &lt;class &#39;corradin_ovp_utils.datasets.schemas.SingleFilePathSchema&#39;&gt;</pre>
 </div>
-</div>
-
 </div>
 
 </div>

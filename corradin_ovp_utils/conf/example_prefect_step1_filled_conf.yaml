@@ -1,0 +1,28 @@
+dataset:
+  name: MS_test
+  genetic: test_MS_genetic_file_split_by_chrom
+  sample: test_MS_sample_file
+run:
+  input:
+    pairs_file_full_path: /lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/test_MS_chr22.tsv
+  mtc:
+    z_threshold: 99
+    filter_1_queries:
+    - unique_samples_count_case != 0 and unique_samples_count_control != 0
+    - (unique_samples_count_case/case_total_no_NA) > 0.01 and (unique_samples_count_control/control_total_no_NA)
+      >0.01
+    - non_zero_geno_combo_counts > 4
+    filter_2_queries:
+    - (case_total_no_NA/case_total_with_NA) > 0.1 & (control_total_no_NA/case_total_with_NA)
+      > 0.1
+  permutation:
+    max_iter: 10000000
+    odds_ratio: cc_odds
+  env: cluster
+  output:
+    output_folder_dir_full_path: /lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils
+    result_path: outputs/MS/MS_test/test_MS_chr22/test/2021-12-13/05-42-30
+    dir: /lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/outputs/MS/MS_test/test_MS_chr22/test/2021-12-13/05-42-30
+output_folder_dir: /lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils
+exp: test
+pairs_file: test_MS_chr22.tsv

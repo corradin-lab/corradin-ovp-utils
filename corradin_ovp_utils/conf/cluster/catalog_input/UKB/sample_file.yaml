@@ -1,0 +1,63 @@
+UKB_sample_file_basic_March_27_2021:
+    type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+    file_type: OVPDataset.SingleFilePathSchema
+    file_format: sample_file.SampleFileFormat
+    load_args:
+        sample_id_col: "ID_2"
+        cov_cols: ["sex"]
+        missing_col: "missing"
+        pandas_args:
+            sep: " "
+            skiprows: [1] #2nd line of file is extra and should be discarded
+    file_path:
+        folder: "/lab/corradin_biobank/Raw_UKB_downloads/sample_files/"
+        full_file_name: "ukb45624_imp_chr21_v3_s487275.sample"
+        
+test_UKB_sample_file_with_pheno_col:
+    type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+    file_type: OVPDataset.SingleFilePathSchema
+    file_format: sample_file.SampleFileFormat
+    load_args:
+        sample_id_col: "ID_2"
+        cov_cols: ["sex"]
+        pandas_args:
+            sep: " "
+            skiprows: [1] #2nd line of file is extra and should be discarded
+        pheno_col_file_info: "lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/data/test_data/pheno_col/UKB_risk_taking_2040_pheno_col.tsv|f.eid|risk_taking_2040" #no missing data in this file
+        ignore_neg_id_samples: True
+    file_path:
+        folder: "/lab/corradin_biobank/Raw_UKB_downloads/sample_files/"
+        full_file_name: "ukb45624_imp_chr21_v3_s487275.sample"
+        
+UKB_sample_file_with_pheno_col:
+    type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+    file_type: OVPDataset.SingleFilePathSchema
+    file_format: sample_file.SampleFileFormat
+    load_args:
+        sample_id_col: "ID_2"
+        cov_cols: ["sex"]
+        pandas_args:
+            sep: " "
+            skiprows: [1] #2nd line of file is extra and should be discarded
+        pheno_col_file_info: "data/test_data/pheno_col/UKB_risk_taking_2040_pheno_col.tsv|f.eid|risk_taking_2040" #no missing data in this file
+        ignore_neg_id_samples: True
+    file_path:
+        folder: "/lab/corradin_biobank/Raw_UKB_downloads/sample_files/"
+        full_file_name: "ukb45624_imp_chr21_v3_s487275.sample"
+        
+
+UKB_sample_file_risk_taking:
+    type: corradin_ovp_utils.datasets.OVPDataset.OVPDataset
+    file_type: OVPDataset.SingleFilePathSchema
+    file_format: sample_file.SampleFileFormat
+    load_args:
+        sample_id_col: "ID_2"
+        cov_cols: ["sex"]
+        pandas_args:
+            sep: " "
+            skiprows: [1] #2nd line of file is extra and should be discarded
+        pheno_col_file_info: "/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/data/test_data/pheno_col/UKB_risk_taking_2040_pheno_col.tsv|f.eid|risk_taking_2040" #no missing data in this file
+        ignore_neg_id_samples: True
+    file_path:
+        folder: "/lab/corradin_biobank/Raw_UKB_downloads/sample_files/"
+        full_file_name: "ukb45624_imp_chr21_v3_s487275.sample"

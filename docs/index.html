@@ -128,8 +128,8 @@ nb_path: "index.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(&lt;corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x7fd8383aa4f0&gt;,
- &lt;corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x7fd878c9fcd0&gt;)</pre>
+<pre>(&lt;corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x1541f0c05400&gt;,
+ &lt;corradin_ovp_utils.datasets.OVPDataset.OVPDataset at 0x154044d99730&gt;)</pre>
 </div>
 
 </div>
@@ -169,8 +169,8 @@ nb_path: "index.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: PosixPath(&#39;data/test_data/gen_file/test_CASE_MS_chr22.gen&#39;),
- &#39;control&#39;: PosixPath(&#39;data/test_data/gen_file/test_CONTROL_MS_chr22.gen&#39;)}</pre>
+<pre>{&#39;case&#39;: SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CASE_MS_chr22.gen&#39;, file_name=&#39;test_CASE_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None),
+ &#39;control&#39;: SingleFilePathSchema(folder=&#39;data/test_data/gen_file&#39;, full_file_name=&#39;test_CONTROL_MS_chr22.gen&#39;, file_name=&#39;test_CONTROL_MS_chr22&#39;, extension=&#39;gen&#39;, split_by_chromosome=None)}</pre>
 </div>
 
 </div>
@@ -203,8 +203,8 @@ nb_path: "index.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;case&#39;: PosixPath(&#39;data/test_data/sample_file/MS_impute2_ALL_sample_out.tsv&#39;),
- &#39;control&#39;: PosixPath(&#39;data/test_data/sample_file/ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv&#39;)}</pre>
+<pre>{&#39;case&#39;: SingleFilePathSchema(folder=&#39;data/test_data/sample_file&#39;, full_file_name=&#39;MS_impute2_ALL_sample_out.tsv&#39;, file_name=&#39;MS_impute2_ALL_sample_out&#39;, extension=&#39;tsv&#39;, split_by_chromosome=None),
+ &#39;control&#39;: SingleFilePathSchema(folder=&#39;data/test_data/sample_file&#39;, full_file_name=&#39;ALL_controls_58C_NBS_WTC2_impute2_sample_out.tsv&#39;, file_name=&#39;ALL_controls_58C_NBS_WTC2_impute2_sample_out&#39;, extension=&#39;tsv&#39;, split_by_chromosome=None)}</pre>
 </div>
 
 </div>
@@ -248,132 +248,30 @@ nb_path: "index.ipynb"
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/ahoang/Documents/Learning/corradin_ovp_utils/.venv/lib/python3.8/site-packages/ipykernel/ipkernel.py:283: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
-  and should_run_async(code)
-</pre>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-6-a08151bc6752&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>all_samples_geno_df <span class="ansi-blue-fg">=</span> CombinedGenoPheno<span class="ansi-blue-fg">.</span>init_from_OVPDataset<span class="ansi-blue-fg">(</span>genetic_file<span class="ansi-blue-fg">,</span> sample_file<span class="ansi-blue-fg">,</span> rsid_list <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;rs77948203&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;rs9610458&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;rs134490&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;rs5756405&#34;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> all_samples_geno_df
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/CombinedGenoPheno.py</span> in <span class="ansi-cyan-fg">init_from_OVPDataset</span><span class="ansi-blue-fg">(cls, genetic_dataset, sample_dataset, rsid_list, id_col_list, batch_size, chrom)</span>
+<span class="ansi-green-intense-fg ansi-bold">     29</span> 
+<span class="ansi-green-intense-fg ansi-bold">     30</span>         genetic_dict <span class="ansi-blue-fg">=</span> cls<span class="ansi-blue-fg">.</span>process_datasets<span class="ansi-blue-fg">(</span>genetic_dataset<span class="ansi-blue-fg">,</span> sample_dataset<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 31</span><span class="ansi-red-fg">         </span>all_samples_geno_df <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>file<span class="ansi-blue-fg">.</span>get_geno_each_sample<span class="ansi-blue-fg">(</span>chrom<span class="ansi-blue-fg">=</span>chrom<span class="ansi-blue-fg">,</span> rsid_list<span class="ansi-blue-fg">=</span> rsid_list<span class="ansi-blue-fg">,</span> id_col_list<span class="ansi-blue-fg">=</span> id_col_list<span class="ansi-blue-fg">,</span> batch_size<span class="ansi-blue-fg">=</span> batch_size <span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> file <span class="ansi-green-fg">in</span> genetic_dict<span class="ansi-blue-fg">.</span>values<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     32</span>         <span class="ansi-green-fg">return</span> pd<span class="ansi-blue-fg">.</span>concat<span class="ansi-blue-fg">(</span>all_samples_geno_df<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     33</span> 
+
+<span class="ansi-green-fg">/lab/corradin_biobank/FOR_AN/OVP/corradin_ovp_utils/corradin_ovp_utils/datasets/CombinedGenoPheno.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">     29</span> 
+<span class="ansi-green-intense-fg ansi-bold">     30</span>         genetic_dict <span class="ansi-blue-fg">=</span> cls<span class="ansi-blue-fg">.</span>process_datasets<span class="ansi-blue-fg">(</span>genetic_dataset<span class="ansi-blue-fg">,</span> sample_dataset<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 31</span><span class="ansi-red-fg">         </span>all_samples_geno_df <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>file<span class="ansi-blue-fg">.</span>get_geno_each_sample<span class="ansi-blue-fg">(</span>chrom<span class="ansi-blue-fg">=</span>chrom<span class="ansi-blue-fg">,</span> rsid_list<span class="ansi-blue-fg">=</span> rsid_list<span class="ansi-blue-fg">,</span> id_col_list<span class="ansi-blue-fg">=</span> id_col_list<span class="ansi-blue-fg">,</span> batch_size<span class="ansi-blue-fg">=</span> batch_size <span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> file <span class="ansi-green-fg">in</span> genetic_dict<span class="ansi-blue-fg">.</span>values<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     32</span>         <span class="ansi-green-fg">return</span> pd<span class="ansi-blue-fg">.</span>concat<span class="ansi-blue-fg">(</span>all_samples_geno_df<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     33</span> 
+
+<span class="ansi-red-fg">TypeError</span>: get_geno_each_sample() got an unexpected keyword argument &#39;id_col_list&#39;</pre>
 </div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>rsid</th>
-      <th>rs77948203</th>
-      <th>rs9610458</th>
-      <th>rs134490</th>
-      <th>rs5756405</th>
-    </tr>
-    <tr>
-      <th>sample_id</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>WTCCCT473540</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>NA</td>
-      <td>AG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473530</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>AA</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473555</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>NA</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473426</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>GG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT473489</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>NA</td>
-      <td>AA</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>WS574632</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>GG</td>
-    </tr>
-    <tr>
-      <th>WS574661</th>
-      <td>GG</td>
-      <td>TT</td>
-      <td>TT</td>
-      <td>AA</td>
-    </tr>
-    <tr>
-      <th>BLOOD294452</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>AG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT511021</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>AG</td>
-    </tr>
-    <tr>
-      <th>WTCCCT510948</th>
-      <td>GG</td>
-      <td>CT</td>
-      <td>TT</td>
-      <td>AA</td>
-    </tr>
-  </tbody>
-</table>
-<p>14947 rows × 4 columns</p>
-</div>
-</div>
-
 </div>
 
 </div>

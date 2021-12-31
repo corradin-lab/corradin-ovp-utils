@@ -1,0 +1,2 @@
+run:
+    dir: ${run.output.dir} #outputs/${dataset.genetic}/${exp}/${pairs_file}/${now:%Y-%m-%d}/${now:%H-%M-%S}
